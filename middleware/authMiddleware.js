@@ -9,7 +9,7 @@ module.exports = function authenticateAccessToken(req, res, next) {
     return res.status(401).json({ error: "Access token missing" });
   }
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_PUBLIC, (err, user) => {
     if (err) {
       return res.status(403).json({ error: "Invalid or expired access token" });
     }

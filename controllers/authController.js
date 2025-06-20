@@ -7,14 +7,14 @@ require("dotenv").config();
 let refreshTokens = [];
 
 const accessTokenGenerator = new TokenGenerator(
-  process.env.ACCESS_TOKEN_SECRET,
-  process.env.ACCESS_TOKEN_SECRET,
+  process.env.ACCESS_TOKEN_PUBLIC,
+  process.env.ACCESS_TOKEN_PRIVATE,
   { expiresIn: "1m" }
 );
 
 const refreshTokenGenerator = new TokenGenerator(
-  process.env.REFRESH_TOKEN_SECRET,
-  process.env.REFRESH_TOKEN_SECRET,
+  process.env.REFRESH_TOKEN_PUBLIC,
+  process.env.REFRESH_TOKEN_,
   { expiresIn: "7d" }
 );
 

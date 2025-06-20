@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_PUBLIC);
     const userId = decoded.id;
 
     const result = await pool.query(
@@ -18,10 +18,6 @@ module.exports = async (req, res, next) => {
     const now = new Date();
     const diffMs = now - createdAt;
     const diffMinutes = diffMs / 1000 / 60;
-
-    if (diffMinutes > 1) {
-      return res.status(403).json({ error: "Token đã hết hạn." });
-    }
 
     req.user = decoded;
     next();
